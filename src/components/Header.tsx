@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   AppBar,
   Box,
@@ -41,14 +42,28 @@ export default function Header() {
           }}
         >
           <Stack direction="row" spacing={2} alignItems="center">
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                bgcolor: "primary.main",
-              }}
-            />
+            <Link href="#top" aria-label="Back to top">
+              <Box
+                sx={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  src="/djParkCityLogo.png"
+                  alt="DJ Park City logo"
+                  width={48}
+                  height={48}
+                  priority
+                />
+              </Box>
+            </Link>
             <Box>
               <Typography variant="subtitle1">{siteContent.brand.name}</Typography>
               <Typography variant="caption" color="text.secondary">

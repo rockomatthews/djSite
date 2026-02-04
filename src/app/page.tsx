@@ -14,7 +14,7 @@ import { siteContent } from "@/lib/content";
 
 export default function Home() {
   return (
-    <Box>
+    <Box id="top">
       <Hero />
 
       <Container id="about" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
