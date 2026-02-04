@@ -1,10 +1,5 @@
 import { Button, Stack } from "@mui/material";
-
-type CTA = {
-  label: string;
-  href: string;
-  variant: "contained" | "outlined" | "text";
-};
+import type { CTA } from "@/lib/content";
 
 type CTAButtonsProps = {
   ctas: CTA[];

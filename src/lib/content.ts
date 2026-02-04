@@ -1,3 +1,9 @@
+export type CTA = {
+  label: string;
+  href: string;
+  variant: "contained" | "outlined" | "text";
+};
+
 export const siteContent = {
   brand: {
     name: "DJ Nova",
@@ -21,7 +27,7 @@ export const siteContent = {
         href: "https://calendly.com/your-dj/booking",
         variant: "contained",
       },
-    ],
+    ] satisfies CTA[],
     video: {
       youtubeId: "ScMzIvxBSi4",
       posterUrl: "/globe.svg",
