@@ -25,7 +25,7 @@ export default function VideoBackground({
   is360 = false,
   musicLabel = "Music",
 }: VideoBackgroundProps) {
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +51,11 @@ export default function VideoBackground({
         },
         events: {
           onReady: (event: any) => {
-            event.target.mute();
+            if (muted) {
+              event.target.mute();
+            } else {
+              event.target.unMute();
+            }
           },
         },
       });
@@ -143,7 +147,7 @@ export default function VideoBackground({
         sx={{
           position: "absolute",
           inset: 0,
-          zIndex: 2,
+          zIndex: 4,
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
@@ -165,7 +169,11 @@ export default function VideoBackground({
             },
           }}
         >
-          {muted ? <VolumeOffIcon sx={{ fontSize: 44 }} /> : <VolumeUpIcon sx={{ fontSize: 44 }} />}
+          {muted ? (
+            <VolumeOffIcon sx={{ fontSize: 44 }} />
+          ) : (
+            <VolumeUpIcon sx={{ fontSize: 44 }} />
+          )}
         </IconButton>
       </Stack>
     </Box>
