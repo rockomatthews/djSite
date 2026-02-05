@@ -76,18 +76,6 @@ export default function Hero() {
             )}
           </IconButton>
         </Box>
-        <Box
-          sx={{
-            position: { xs: "static", md: "absolute" },
-            top: { md: 40 },
-            right: { md: 40 },
-            mb: { xs: 4, md: 0 },
-            display: "flex",
-            justifyContent: { xs: "flex-start", md: "flex-end" },
-          }}
-        >
-          <SoundCloudPlayer tracks={siteContent.soundcloud.tracks} />
-        </Box>
         <Stack spacing={4} maxWidth={680}>
           <Stack spacing={2}>
             <Typography variant="overline" sx={{ color: "secondary.main" }}>
@@ -125,6 +113,18 @@ export default function Hero() {
             </CardContent>
           </Card>
         </Stack>
+        <Box
+          sx={{
+            position: { xs: "static", md: "absolute" },
+            top: { md: 40 },
+            right: { md: 40 },
+            mt: { xs: 6, md: 0 },
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-end" },
+          }}
+        >
+          <SoundCloudPlayer tracks={siteContent.soundcloud.tracks} />
+        </Box>
       </Container>
     </Box>
   );
