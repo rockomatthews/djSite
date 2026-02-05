@@ -75,6 +75,16 @@ export const siteContent = {
     { title: "Sunset Lounge", caption: "Golden hour grooves." },
     { title: "Wedding Finale", caption: "Confetti, classics, and champagne." },
   ],
+  galleryImages: [
+    "/gallery/1.JPG",
+    "/gallery/2.jpeg",
+    "/gallery/3.JPG",
+    "/gallery/4.JPG",
+    "/gallery/5.JPG",
+    "/gallery/6.JPG",
+    "/gallery/7.jpeg",
+    "/gallery/8.JPG",
+  ],
   about: {
     headline: "Your soundtrack, crafted live.",
     bio:
