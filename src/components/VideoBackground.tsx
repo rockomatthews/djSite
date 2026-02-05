@@ -69,6 +69,12 @@ const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
           onReady: (event: any) => {
               event.target.mute();
           },
+            onStateChange: (event: any) => {
+              if (window.YT && event.data === window.YT.PlayerState.ENDED) {
+                event.target.seekTo(0);
+                event.target.playVideo();
+              }
+            },
         },
       });
     };
