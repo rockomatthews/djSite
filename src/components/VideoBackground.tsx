@@ -1,9 +1,9 @@
 "use client";
 
-import { Box, Button, Stack } from "@mui/material";
+import { Box, IconButton, Stack } from "@mui/material";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type VideoBackgroundProps = {
   youtubeId: string;
@@ -12,6 +12,13 @@ type VideoBackgroundProps = {
   musicLabel?: string;
 };
 
+declare global {
+  interface Window {
+    YT?: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
 export default function VideoBackground({
   youtubeId,
   posterUrl,
@@ -19,21 +26,70 @@ export default function VideoBackground({
   musicLabel = "Music",
 }: VideoBackgroundProps) {
   const [muted, setMuted] = useState(true);
+  const playerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const iframeSrc = useMemo(() => {
-    const params = new URLSearchParams({
-      autoplay: "1",
-      mute: muted ? "1" : "0",
-      controls: "0",
-      loop: "1",
-      playlist: youtubeId,
-      playsinline: "1",
-      modestbranding: "1",
-      rel: "0",
-      showinfo: "0",
-    });
-    return `https://www.youtube.com/embed/${youtubeId}?${params.toString()}`;
-  }, [muted, youtubeId]);
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const loadPlayer = () => {
+      if (!window.YT || !window.YT.Player) return;
+      if (playerRef.current) return;
+
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        videoId: youtubeId,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          loop: 1,
+          playlist: youtubeId,
+          playsinline: 1,
+          modestbranding: 1,
+          rel: 0,
+          disablekb: 1,
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.mute();
+          },
+        },
+      });
+    };
+
+    if (window.YT && window.YT.Player) {
+      loadPlayer();
+      return;
+    }
+
+    const existingScript = document.querySelector(
+      "script[src=\"https://www.youtube.com/iframe_api\"]"
+    );
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(script);
+    }
+
+    const previous = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof previous === "function") {
+        previous();
+      }
+      loadPlayer();
+    };
+  }, [youtubeId]);
+
+  const toggleMute = () => {
+    if (!playerRef.current) return;
+    if (muted) {
+      playerRef.current.unMute();
+      setMuted(false);
+    } else {
+      playerRef.current.mute();
+      setMuted(true);
+    }
+  };
 
   return (
     <Box
@@ -51,16 +107,17 @@ export default function VideoBackground({
           pointerEvents: "none",
         }}
       >
-        <iframe
-          key={`${youtubeId}-${muted}`}
-          title={is360 ? "DJ background 360 video" : "DJ background video"}
-          src={iframeSrc}
-          allow="autoplay; fullscreen; picture-in-picture"
-          style={{
+        <Box
+          ref={containerRef}
+          aria-label={is360 ? "DJ background 360 video" : "DJ background video"}
+          sx={{
             width: "100%",
             height: "100%",
-            border: 0,
-            objectFit: "cover",
+            "& iframe": {
+              width: "100%",
+              height: "100%",
+              border: 0,
+            },
           }}
         />
       </Box>
@@ -92,23 +149,24 @@ export default function VideoBackground({
           pointerEvents: "none",
         }}
       >
-        <Button
-          onClick={() => setMuted((prev) => !prev)}
-          variant="contained"
-          color="secondary"
-          startIcon={muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+        <IconButton
+          onClick={toggleMute}
+          aria-label={`${muted ? "Enable" : "Disable"} ${musicLabel}`}
           sx={{
             pointerEvents: "auto",
-            px: { xs: 4, md: 6 },
-            py: { xs: 2, md: 2.5 },
-            fontSize: { xs: "1rem", md: "1.2rem" },
-            borderRadius: 999,
-            boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
+            width: { xs: 84, md: 96 },
+            height: { xs: 84, md: 96 },
+            bgcolor: "rgba(0,0,0,0.65)",
+            border: "2px solid rgba(255,255,255,0.6)",
+            color: "common.white",
+            boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
+            "&:hover": {
+              bgcolor: "rgba(0,0,0,0.8)",
+            },
           }}
-          aria-label={`${muted ? "Enable" : "Disable"} ${musicLabel}`}
         >
-          {muted ? "Tap to Unmute" : "Sound On"}
-        </Button>
+          {muted ? <VolumeOffIcon sx={{ fontSize: 44 }} /> : <VolumeUpIcon sx={{ fontSize: 44 }} />}
+        </IconButton>
       </Stack>
     </Box>
   );

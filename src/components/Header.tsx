@@ -46,21 +46,25 @@ export default function Header() {
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: 64,
-                  height: 64,
+                  width: 80,
+                  height: 80,
                   borderRadius: "50%",
                   overflow: "hidden",
                   border: "1px solid rgba(255,255,255,0.2)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  transition: "transform 180ms ease",
+                  "&:hover": {
+                    transform: "scale(1.08)",
+                  },
                 }}
               >
                 <Image
                   src="/djParkCityLogo.png"
                   alt="DJ Park City logo"
-                  width={64}
-                  height={64}
+                  width={80}
+                  height={80}
                   priority
                 />
               </Box>
