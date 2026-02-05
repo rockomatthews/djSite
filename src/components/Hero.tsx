@@ -12,7 +12,7 @@ import { siteContent } from "@/lib/content";
 export default function Hero() {
   const { hero, mediaPreview } = siteContent;
   const videoRef = useRef<VideoBackgroundHandle>(null);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   return (
     <Box

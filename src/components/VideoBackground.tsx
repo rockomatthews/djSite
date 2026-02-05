@@ -35,7 +35,7 @@ const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
     { youtubeId, posterUrl, is360 = false, onMuteChange },
     ref
   ) => {
-    const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(true);
     const playerRef = useRef<any>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -67,11 +67,7 @@ const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
         },
         events: {
           onReady: (event: any) => {
-            if (muted) {
               event.target.mute();
-            } else {
-              event.target.unMute();
-            }
           },
         },
       });
