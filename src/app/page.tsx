@@ -63,6 +63,29 @@ export default function Home() {
         </Grid>
       </Container>
 
+      <Container id="gallery" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
+        <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
+          <Typography variant="h2">Gallery & highlights</Typography>
+          <Typography variant="body1" color="text.secondary">
+            Moments from packed dance floors, curated soundscapes, and client events.
+          </Typography>
+        </Stack>
+        <Grid container spacing={3} sx={{ mt: 4 }}>
+          {siteContent.gallery.map((item) => (
+            <Grid size={{ xs: 12, md: 4 }} key={item.title}>
+              <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
+                <CardContent>
+                  <Typography variant="h6">{item.title}</Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                    {item.caption}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
       <Box id="testimonials" sx={{ bgcolor: "rgba(255,255,255,0.03)", py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
         <Container>
           <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
@@ -90,29 +113,6 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
-
-      <Container id="gallery" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
-        <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
-          <Typography variant="h2">Gallery & highlights</Typography>
-          <Typography variant="body1" color="text.secondary">
-            Moments from packed dance floors, curated soundscapes, and client events.
-          </Typography>
-        </Stack>
-        <Grid container spacing={3} sx={{ mt: 4 }}>
-          {siteContent.gallery.map((item) => (
-            <Grid size={{ xs: 12, md: 4 }} key={item.title}>
-              <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
-                <CardContent>
-                  <Typography variant="h6">{item.title}</Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                    {item.caption}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
 
       <Container id="contact" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
         <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>

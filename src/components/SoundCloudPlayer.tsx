@@ -2,6 +2,8 @@
 
 import {
   Box,
+  Card,
+  CardContent,
   FormControl,
   InputLabel,
   MenuItem,
@@ -33,7 +35,9 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
       show_comments: "false",
       show_user: "false",
       show_reposts: "false",
-      visual: "false",
+      show_artwork: "true",
+      color: "ff5500",
+      visual: "true",
     });
     return `https://w.soundcloud.com/player/?${params.toString()}`;
   }, [trackUrl]);
@@ -43,40 +47,52 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
   };
 
   return (
-    <Stack spacing={1} sx={{ minWidth: 220 }}>
-      <Typography variant="caption" sx={{ color: "text.secondary" }}>
-        Select a mix
-      </Typography>
-      <FormControl size="small" fullWidth>
-        <InputLabel id="soundcloud-track-label">Track</InputLabel>
-        <Select
-          labelId="soundcloud-track-label"
-          value={trackUrl}
-          label="Track"
-          onChange={handleChange}
-        >
-          {tracks.map((track) => (
-            <MenuItem key={track.url} value={track.url}>
-              {track.title}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      {embedSrc ? (
-        <Box
-          component="iframe"
-          title="SoundCloud player"
-          src={embedSrc}
-          sx={{
-            border: 0,
-            width: "100%",
-            height: 60,
-            borderRadius: 2,
-            bgcolor: "rgba(255,255,255,0.08)",
-          }}
-          allow="autoplay"
-        />
-      ) : null}
-    </Stack>
+    <Card
+      sx={{
+        minWidth: 240,
+        maxWidth: 320,
+        bgcolor: "rgba(10,10,14,0.78)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        backdropFilter: "blur(14px)",
+      }}
+    >
+      <CardContent>
+        <Stack spacing={1.5}>
+          <Typography variant="overline" sx={{ color: "#ff5500" }}>
+            SoundCloud
+          </Typography>
+          <FormControl size="small" fullWidth>
+            <InputLabel id="soundcloud-track-label">Featured track</InputLabel>
+            <Select
+              labelId="soundcloud-track-label"
+              value={trackUrl}
+              label="Featured track"
+              onChange={handleChange}
+            >
+              {tracks.map((track) => (
+                <MenuItem key={track.url} value={track.url}>
+                  {track.title}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {embedSrc ? (
+            <Box
+              component="iframe"
+              title="SoundCloud player"
+              src={embedSrc}
+              sx={{
+                border: 0,
+                width: "100%",
+                height: 120,
+                borderRadius: 2,
+                bgcolor: "rgba(255,255,255,0.08)",
+              }}
+              allow="autoplay"
+            />
+          ) : null}
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

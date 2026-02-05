@@ -12,7 +12,6 @@ import {
   Typography,
 } from "@mui/material";
 import { siteContent } from "@/lib/content";
-import SoundCloudPlayer from "@/components/SoundCloudPlayer";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -47,8 +46,8 @@ export default function Header() {
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: 48,
-                  height: 48,
+                  width: 64,
+                  height: 64,
                   borderRadius: "50%",
                   overflow: "hidden",
                   border: "1px solid rgba(255,255,255,0.2)",
@@ -60,17 +59,19 @@ export default function Header() {
                 <Image
                   src="/djParkCityLogo.png"
                   alt="DJ Park City logo"
-                  width={48}
-                  height={48}
+                  width={64}
+                  height={64}
                   priority
                 />
               </Box>
             </Link>
             <Box>
               <Typography variant="subtitle1">{siteContent.brand.name}</Typography>
-              <Typography variant="caption" color="text.secondary">
-                {siteContent.brand.tagline}
-              </Typography>
+              {siteContent.brand.tagline ? (
+                <Typography variant="caption" color="text.secondary">
+                  {siteContent.brand.tagline}
+                </Typography>
+              ) : null}
             </Box>
           </Stack>
 
@@ -99,7 +100,6 @@ export default function Header() {
             alignItems="center"
             sx={{ display: { xs: "none", lg: "flex" } }}
           >
-            <SoundCloudPlayer tracks={siteContent.soundcloud.tracks} />
             <Button
               href={siteContent.brand.bookingUrl}
               variant="contained"
@@ -118,7 +118,6 @@ export default function Header() {
             gap: 2,
           }}
         >
-          <SoundCloudPlayer tracks={siteContent.soundcloud.tracks} />
           <Button
             href={siteContent.brand.bookingUrl}
             variant="contained"

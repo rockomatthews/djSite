@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Container, Stack, Typography } from "@mui/material";
 import CTAButtons from "@/components/CTAButtons";
+import SoundCloudPlayer from "@/components/SoundCloudPlayer";
 import VideoBackground from "@/components/VideoBackground";
 import { siteContent } from "@/lib/content";
 
@@ -33,6 +34,18 @@ export default function Hero() {
         }}
       />
       <Container sx={{ position: "relative", zIndex: 2, py: { xs: 10, md: 14 } }}>
+        <Box
+          sx={{
+            position: { xs: "static", md: "absolute" },
+            top: { md: 40 },
+            right: { md: 40 },
+            mb: { xs: 4, md: 0 },
+            display: "flex",
+            justifyContent: { xs: "flex-start", md: "flex-end" },
+          }}
+        >
+          <SoundCloudPlayer tracks={siteContent.soundcloud.tracks} />
+        </Box>
         <Stack spacing={4} maxWidth={680}>
           <Stack spacing={2}>
             <Typography variant="overline" sx={{ color: "secondary.main" }}>

@@ -6,8 +6,8 @@ export type CTA = {
 
 export const siteContent = {
   brand: {
-    name: "DJ Nova",
-    tagline: "High-energy sets for weddings, clubs, and private events.",
+    name: "DJ Park City",
+    tagline: "",
     location: "San Francisco, CA",
     phone: "+1 (415) 555-0134",
     phoneLink: "tel:+14155550134",
@@ -100,10 +100,6 @@ export const siteContent = {
       {
         title: "Afterhours Set",
         url: "https://soundcloud.com/you/your-track-2",
-      },
-      {
-        title: "Sunset Session",
-        url: "https://soundcloud.com/you/your-track-3",
       },
     ],
   },
