@@ -29,7 +29,7 @@ export const siteContent = {
       },
     ] satisfies CTA[],
     video: {
-      youtubeId: "ScMzIvxBSi4",
+      youtubeId: "temQ82314DM",
       posterUrl: "/globe.svg",
       is360: true,
     },
@@ -94,12 +94,12 @@ export const siteContent = {
   soundcloud: {
     tracks: [
       {
-        title: "Midnight Drive Mix",
-        url: "https://soundcloud.com/you/your-track-1",
+        title: "Godzilla (Zardonic & Enduser Remix)",
+        url: "https://soundcloud.com/iridiumhc/godzilla-zardonic-enduser-remix",
       },
       {
-        title: "Afterhours Set",
-        url: "https://soundcloud.com/you/your-track-2",
+        title: "Bitter (Neuroklast Remix)",
+        url: "https://soundcloud.com/zardonic/bitter-neuroklast-remix",
       },
     ],
   },

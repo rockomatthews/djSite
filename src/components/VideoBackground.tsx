@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { useMemo, useState } from "react";
@@ -82,26 +82,34 @@ export default function VideoBackground({
         />
       )}
 
-      <Tooltip title={`${muted ? "Enable" : "Disable"} ${musicLabel}`}>
-        <IconButton
+      <Stack
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+        }}
+      >
+        <Button
           onClick={() => setMuted((prev) => !prev)}
+          variant="contained"
+          color="secondary"
+          startIcon={muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
           sx={{
-            position: "absolute",
-            right: { xs: 16, md: 32 },
-            bottom: { xs: 16, md: 32 },
-            zIndex: 2,
-            bgcolor: "rgba(10,10,14,0.72)",
-            border: "1px solid rgba(255,255,255,0.15)",
-            color: "common.white",
-            "&:hover": {
-              bgcolor: "rgba(20,20,30,0.9)",
-            },
+            pointerEvents: "auto",
+            px: { xs: 4, md: 6 },
+            py: { xs: 2, md: 2.5 },
+            fontSize: { xs: "1rem", md: "1.2rem" },
+            borderRadius: 999,
+            boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
           }}
           aria-label={`${muted ? "Enable" : "Disable"} ${musicLabel}`}
         >
-          {muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
-        </IconButton>
-      </Tooltip>
+          {muted ? "Tap to Unmute" : "Sound On"}
+        </Button>
+      </Stack>
     </Box>
   );
 }

@@ -4,6 +4,7 @@ import {
   Box,
   Card,
   CardContent,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -36,6 +37,10 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
       show_user: "false",
       show_reposts: "false",
       show_artwork: "true",
+      show_teaser: "false",
+      buying: "false",
+      sharing: "false",
+      download: "false",
       color: "ff5500",
       visual: "true",
     });
@@ -49,25 +54,40 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
   return (
     <Card
       sx={{
-        minWidth: 240,
-        maxWidth: 320,
-        bgcolor: "rgba(10,10,14,0.78)",
+        minWidth: 260,
+        maxWidth: 340,
+        bgcolor: "rgba(8,8,12,0.8)",
         border: "1px solid rgba(255,255,255,0.12)",
-        backdropFilter: "blur(14px)",
+        backdropFilter: "blur(18px)",
+        boxShadow: "0 16px 40px rgba(0,0,0,0.35)",
       }}
     >
       <CardContent>
         <Stack spacing={1.5}>
-          <Typography variant="overline" sx={{ color: "#ff5500" }}>
-            SoundCloud
-          </Typography>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Box
+              sx={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                bgcolor: "#ff5500",
+              }}
+            />
+            <Typography variant="subtitle2" sx={{ color: "#ff5500" }}>
+              SoundCloud
+            </Typography>
+          </Stack>
           <FormControl size="small" fullWidth>
-            <InputLabel id="soundcloud-track-label">Featured track</InputLabel>
+            <InputLabel id="soundcloud-track-label">Select a track</InputLabel>
             <Select
               labelId="soundcloud-track-label"
               value={trackUrl}
-              label="Featured track"
+              label="Select a track"
               onChange={handleChange}
+              sx={{
+                bgcolor: "rgba(255,255,255,0.06)",
+                borderRadius: 2,
+              }}
             >
               {tracks.map((track) => (
                 <MenuItem key={track.url} value={track.url}>
@@ -76,6 +96,7 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
               ))}
             </Select>
           </FormControl>
+          <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
           {embedSrc ? (
             <Box
               component="iframe"
@@ -84,9 +105,10 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
               sx={{
                 border: 0,
                 width: "100%",
-                height: 120,
+                height: 166,
                 borderRadius: 2,
-                bgcolor: "rgba(255,255,255,0.08)",
+                overflow: "hidden",
+                bgcolor: "rgba(255,255,255,0.06)",
               }}
               allow="autoplay"
             />
