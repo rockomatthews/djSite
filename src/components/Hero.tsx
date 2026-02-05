@@ -1,11 +1,18 @@
-import { Box, Card, CardContent, Container, Stack, Typography } from "@mui/material";
+"use client";
+
+import { Box, Card, CardContent, Container, IconButton, Stack, Typography } from "@mui/material";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { useRef, useState } from "react";
 import CTAButtons from "@/components/CTAButtons";
 import SoundCloudPlayer from "@/components/SoundCloudPlayer";
-import VideoBackground from "@/components/VideoBackground";
+import VideoBackground, { type VideoBackgroundHandle } from "@/components/VideoBackground";
 import { siteContent } from "@/lib/content";
 
 export default function Hero() {
   const { hero, mediaPreview } = siteContent;
+  const videoRef = useRef<VideoBackgroundHandle>(null);
+  const [muted, setMuted] = useState(false);
 
   return (
     <Box
@@ -19,10 +26,11 @@ export default function Hero() {
       }}
     >
       <VideoBackground
+        ref={videoRef}
         youtubeId={hero.video.youtubeId}
         posterUrl={hero.video.posterUrl}
         is360={hero.video.is360}
-        musicLabel={hero.musicToggleLabel}
+        onMuteChange={setMuted}
       />
       <Box
         sx={{
@@ -34,6 +42,40 @@ export default function Hero() {
         }}
       />
       <Container sx={{ position: "relative", zIndex: 2, py: { xs: 10, md: 14 } }}>
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 4,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
+          <IconButton
+            onClick={() => videoRef.current?.toggleMute()}
+            aria-label={`${muted ? "Enable" : "Disable"} ${hero.musicToggleLabel}`}
+            sx={{
+              pointerEvents: "auto",
+              width: { xs: 84, md: 96 },
+              height: { xs: 84, md: 96 },
+              bgcolor: "rgba(0,0,0,0.65)",
+              border: "2px solid rgba(255,255,255,0.6)",
+              color: "common.white",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
+              "&:hover": {
+                bgcolor: "rgba(0,0,0,0.8)",
+              },
+            }}
+          >
+            {muted ? (
+              <VolumeOffIcon sx={{ fontSize: 44 }} />
+            ) : (
+              <VolumeUpIcon sx={{ fontSize: 44 }} />
+            )}
+          </IconButton>
+        </Box>
         <Box
           sx={{
             position: { xs: "static", md: "absolute" },

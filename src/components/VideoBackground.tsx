@@ -1,15 +1,19 @@
 "use client";
 
-import { Box, IconButton, Stack } from "@mui/material";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { useEffect, useRef, useState } from "react";
+import { Box } from "@mui/material";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
 type VideoBackgroundProps = {
   youtubeId: string;
   posterUrl?: string;
   is360?: boolean;
-  musicLabel?: string;
+  onMuteChange?: (muted: boolean) => void;
 };
 
 declare global {
@@ -19,17 +23,29 @@ declare global {
   }
 }
 
-export default function VideoBackground({
-  youtubeId,
-  posterUrl,
-  is360 = false,
-  musicLabel = "Music",
-}: VideoBackgroundProps) {
-  const [muted, setMuted] = useState(false);
-  const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export type VideoBackgroundHandle = {
+  toggleMute: () => void;
+  mute: () => void;
+  unmute: () => void;
+  isMuted: () => boolean;
+};
 
-  useEffect(() => {
+const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
+  (
+    { youtubeId, posterUrl, is360 = false, onMuteChange },
+    ref
+  ) => {
+    const [muted, setMuted] = useState(false);
+    const playerRef = useRef<any>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      if (onMuteChange) {
+        onMuteChange(muted);
+      }
+    }, [muted, onMuteChange]);
+
+    useEffect(() => {
     if (!containerRef.current) return;
 
     const loadPlayer = () => {
@@ -40,7 +56,7 @@ export default function VideoBackground({
         videoId: youtubeId,
         playerVars: {
           autoplay: 1,
-          mute: 1,
+            mute: muted ? 1 : 0,
           controls: 0,
           loop: 1,
           playlist: youtubeId,
@@ -82,28 +98,47 @@ export default function VideoBackground({
       }
       loadPlayer();
     };
-  }, [youtubeId]);
+    }, [youtubeId, muted]);
 
-  const toggleMute = () => {
-    if (!playerRef.current) return;
-    if (muted) {
-      playerRef.current.unMute();
-      setMuted(false);
-    } else {
-      playerRef.current.mute();
-      setMuted(true);
-    }
-  };
+    const toggleMute = () => {
+      if (!playerRef.current) return;
+      if (muted) {
+        playerRef.current.unMute();
+        setMuted(false);
+      } else {
+        playerRef.current.mute();
+        setMuted(true);
+      }
+    };
 
-  return (
-    <Box
-      sx={{
-        position: "absolute",
-        inset: 0,
-        overflow: "hidden",
-        zIndex: 0,
-      }}
-    >
+    useImperativeHandle(
+      ref,
+      () => ({
+        toggleMute,
+        mute: () => {
+          if (!playerRef.current) return;
+          playerRef.current.mute();
+          setMuted(true);
+        },
+        unmute: () => {
+          if (!playerRef.current) return;
+          playerRef.current.unMute();
+          setMuted(false);
+        },
+        isMuted: () => muted,
+      }),
+      [muted]
+    );
+
+    return (
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+          zIndex: 0,
+        }}
+      >
       <Box
         sx={{
           position: "absolute",
@@ -142,40 +177,11 @@ export default function VideoBackground({
           }}
         />
       )}
-
-      <Stack
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 4,
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none",
-        }}
-      >
-        <IconButton
-          onClick={toggleMute}
-          aria-label={`${muted ? "Enable" : "Disable"} ${musicLabel}`}
-          sx={{
-            pointerEvents: "auto",
-            width: { xs: 84, md: 96 },
-            height: { xs: 84, md: 96 },
-            bgcolor: "rgba(0,0,0,0.65)",
-            border: "2px solid rgba(255,255,255,0.6)",
-            color: "common.white",
-            boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
-            "&:hover": {
-              bgcolor: "rgba(0,0,0,0.8)",
-            },
-          }}
-        >
-          {muted ? (
-            <VolumeOffIcon sx={{ fontSize: 44 }} />
-          ) : (
-            <VolumeUpIcon sx={{ fontSize: 44 }} />
-          )}
-        </IconButton>
-      </Stack>
     </Box>
-  );
-}
+    );
+  }
+);
+
+VideoBackground.displayName = "VideoBackground";
+
+export default VideoBackground;
