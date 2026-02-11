@@ -1,29 +1,40 @@
-import { Box, Container, Link, Stack, Typography } from "@mui/material";
-import { siteContent } from "@/lib/content";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ py: 6, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+    <Box component="footer" sx={{ py: 2, bgcolor: "transparent" }}>
       <Container>
-        <Stack spacing={2} alignItems={{ xs: "flex-start", md: "center" }}>
-          <Typography variant="h6">{siteContent.brand.name}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {siteContent.brand.tagline}
-          </Typography>
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-            <Link href={siteContent.brand.phoneLink} color="inherit" underline="hover">
-              {siteContent.brand.phone}
-            </Link>
-            <Link href={`mailto:${siteContent.brand.email}`} color="inherit" underline="hover">
-              {siteContent.brand.email}
-            </Link>
-            <Link href={siteContent.brand.bookingUrl} color="inherit" underline="hover">
-              Bookings
-            </Link>
-          </Stack>
+        <Stack
+          direction="row"
+          spacing={1.5}
+          alignItems="center"
+          justifyContent="center"
+        >
           <Typography variant="caption" color="text.secondary">
-            {new Date().getFullYear()} {siteContent.brand.name}. All rights reserved.
+            © 3030 |
           </Typography>
+          <Box
+            sx={{
+              width: 48,
+              height: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "transform 200ms ease",
+              transformOrigin: "center bottom",
+              "&:hover": {
+                transform: "translateY(-36px) scale(4)",
+              },
+            }}
+          >
+            <Image
+              src="/gallery/rocketshipSites.png"
+              alt="Rocketship Sites logo"
+              width={48}
+              height={48}
+            />
+          </Box>
         </Stack>
       </Container>
     </Box>
