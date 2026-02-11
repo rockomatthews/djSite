@@ -10,7 +10,7 @@ export const montserrat = Montserrat({
 export const theme = createTheme({
   palette: {
     mode: "dark",
-    primary: { main: "#F04E98" },
+    primary: { main: "#4CC2FF" },
     secondary: { main: "#39E5C6" },
     background: {
       default: "#0B0B0F",

@@ -63,11 +63,13 @@ export const siteContent = {
         "Best DJ we have booked in years. The dance floor never emptied.",
       name: "Amelia R.",
       event: "Wedding Reception",
+      rating: 5,
     },
     {
       quote: "The mix was flawless and the energy kept building all night.",
       name: "Marcus J.",
       event: "Rooftop Party",
+      rating: 5,
     },
   ],
   gallery: [
@@ -104,12 +106,32 @@ export const siteContent = {
   soundcloud: {
     tracks: [
       {
-        title: "Godzilla (Zardonic & Enduser Remix)",
-        url: "https://soundcloud.com/iridiumhc/godzilla-zardonic-enduser-remix",
+        title: "Soul Makossa (Money) [UK Radio Edit]",
+        url: "https://soundcloud.com/yolandabecool/soul-makossa-money-yolanda-be-cool-dcup",
+      },
+    ],
+  },
+  googleReviews: {
+    placeId: "YOUR_GOOGLE_PLACE_ID",
+    reviews: [
+      {
+        author: "Amelia R.",
+        rating: 5,
+        time: "2 months ago",
+        text:
+          "Best DJ we have booked in years. The dance floor never emptied.",
       },
       {
-        title: "Bitter (Neuroklast Remix)",
-        url: "https://soundcloud.com/zardonic/bitter-neuroklast-remix",
+        author: "Marcus J.",
+        rating: 5,
+        time: "4 months ago",
+        text: "The mix was flawless and the energy kept building all night.",
+      },
+      {
+        author: "Jasmine K.",
+        rating: 5,
+        time: "6 months ago",
+        text: "Professional, punctual, and the playlist was perfect.",
       },
     ],
   },

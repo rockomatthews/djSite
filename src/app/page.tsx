@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -9,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 import Hero from "@/components/Hero";
 import GallerySection from "@/components/GallerySection";
 import { siteContent } from "@/lib/content";
@@ -66,25 +68,50 @@ export default function Home() {
 
       <GallerySection />
 
-      <Box id="testimonials" sx={{ bgcolor: "rgba(255,255,255,0.03)", py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
+      <Box
+        id="testimonials"
+        sx={{
+          bgcolor: "rgba(255,255,255,0.03)",
+          py: { xs: 8, md: 12 },
+          scrollMarginTop: 96,
+        }}
+      >
         <Container>
           <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
-            <Typography variant="h2">Testimonials</Typography>
+            <Typography variant="h2">Google Reviews</Typography>
             <Typography variant="body1" color="text.secondary">
-              Trusted by couples, brands, and nightlife teams.
+              Live reviews will be pulled from Google once the Place ID is connected.
             </Typography>
           </Stack>
           <Grid container spacing={3} sx={{ mt: 4 }}>
-            {siteContent.testimonials.map((testimonial) => (
-              <Grid size={{ xs: 12, md: 6 }} key={testimonial.name}>
-                <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
+            {siteContent.googleReviews.reviews.map((review) => (
+              <Grid size={{ xs: 12, md: 4 }} key={`${review.author}-${review.time}`}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
                   <CardContent>
-                    <Typography variant="body1">“{testimonial.quote}”</Typography>
-                    <Typography variant="subtitle2" sx={{ mt: 2 }}>
-                      {testimonial.name}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {testimonial.event}
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar sx={{ bgcolor: "primary.main" }}>
+                        {review.author[0]}
+                      </Avatar>
+                      <Box>
+                        <Typography variant="subtitle2">{review.author}</Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {review.time}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                    <Stack direction="row" spacing={0.5} sx={{ mt: 2 }}>
+                      {Array.from({ length: review.rating }).map((_, index) => (
+                        <StarIcon key={index} sx={{ color: "#fbbc04" }} />
+                      ))}
+                    </Stack>
+                    <Typography variant="body2" sx={{ mt: 2 }}>
+                      {review.text}
                     </Typography>
                   </CardContent>
                 </Card>
