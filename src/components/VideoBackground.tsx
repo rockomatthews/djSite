@@ -149,7 +149,7 @@ const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
               top: 0,
               left: 0,
               border: 0,
-              transform: { xs: "translateY(-12%)", md: "none" },
+              transform: { xs: "translateY(-40%)", md: "none" },
             },
           }}
         >
