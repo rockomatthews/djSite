@@ -8,7 +8,7 @@ export const siteContent = {
   brand: {
     name: "DJ Park City",
     tagline: "",
-    location: "San Francisco, CA",
+    location: "Park City, Utah",
     phone: "+1 (415) 555-0134",
     phoneLink: "tel:+14155550134",
     smsLink: "sms:+14155550134",
@@ -21,7 +21,7 @@ export const siteContent = {
       "Modern mixes, seamless transitions, and a vibe tailored to your crowd.",
     ctas: [
       { label: "Call Now", href: "tel:+14155550134", variant: "contained" },
-      { label: "Text Us", href: "sms:+14155550134", variant: "outlined" },
+      { label: "Text Me", href: "sms:+14155550134", variant: "outlined" },
       {
         label: "Book a Date",
         href: "https://calendly.com/your-dj/booking",

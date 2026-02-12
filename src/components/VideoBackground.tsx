@@ -144,7 +144,10 @@ const VideoBackground = forwardRef<VideoBackgroundHandle, VideoBackgroundProps>(
             height: "100%",
             "& iframe": {
               width: "100%",
-              height: "100%",
+              height: { xs: "120%", md: "100%" },
+              position: "absolute",
+              top: 0,
+              left: 0,
               border: 0,
             },
           }}

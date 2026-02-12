@@ -80,7 +80,7 @@ export default function Home() {
           <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
             <Typography variant="h2">Google Reviews</Typography>
             <Typography variant="body1" color="text.secondary">
-              Live reviews will be pulled from Google once the Place ID is connected.
+              Live Reviews from Google
             </Typography>
           </Stack>
           <Grid container spacing={3} sx={{ mt: 4 }}>
@@ -138,7 +138,7 @@ export default function Home() {
             Call {siteContent.brand.phone}
           </Button>
           <Button variant="outlined" href={siteContent.brand.smsLink} size="large">
-            Text Us
+            Text Me
           </Button>
           <Button variant="contained" href={siteContent.brand.bookingUrl} size="large">
             Book a Date

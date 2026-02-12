@@ -49,8 +49,9 @@ export default function Hero() {
             zIndex: 4,
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: { xs: "flex-start", md: "center" },
             pointerEvents: "none",
+            pt: { xs: 10, md: 0 },
           }}
         >
           <IconButton
