@@ -29,7 +29,7 @@ export default function Footer() {
             }}
           >
             <Image
-              src="/gallery/rocketshipSites.png"
+              src="/gallery/rocketshipSitesLogo.svg"
               alt="Rocketship Sites logo"
               width={48}
               height={48}
