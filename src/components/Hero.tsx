@@ -47,11 +47,7 @@ export default function Hero() {
             position: "absolute",
             inset: 0,
             zIndex: 4,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: { xs: "flex-start", md: "center" },
             pointerEvents: "none",
-            pt: { xs: 10, md: 0 },
           }}
         >
           <IconButton
@@ -59,6 +55,13 @@ export default function Hero() {
             aria-label={`${muted ? "Enable" : "Disable"} ${hero.musicToggleLabel}`}
             sx={{
               pointerEvents: "auto",
+              position: "absolute",
+              top: { xs: 12, md: "50%" },
+              left: { xs: "50%", md: "50%" },
+              transform: {
+                xs: "translateX(-50%)",
+                md: "translate(-50%, -50%)",
+              },
               width: { xs: 84, md: 96 },
               height: { xs: 84, md: 96 },
               bgcolor: "rgba(0,0,0,0.65)",
