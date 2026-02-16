@@ -9,10 +9,10 @@ export const siteContent = {
     name: "DJ Park City",
     tagline: "",
     location: "Park City, Utah",
-    phone: "+1 (415) 555-0134",
-    phoneLink: "tel:+14155550134",
-    smsLink: "sms:+14155550134",
-    bookingUrl: "https://calendly.com/your-dj/booking",
+    phone: "+1 (435) 901-0628",
+    phoneLink: "tel:+14359010628",
+    smsLink: "sms:+14359010628",
+    bookingUrl: "#contact",
     email: "bookings@djnova.com",
   },
   hero: {
@@ -20,11 +20,11 @@ export const siteContent = {
     subheadline:
       "Modern mixes, seamless transitions, and a vibe tailored to your crowd.",
     ctas: [
-      { label: "Call Now", href: "tel:+14155550134", variant: "contained" },
-      { label: "Text Me", href: "sms:+14155550134", variant: "outlined" },
+      { label: "Call Now", href: "tel:+14359010628", variant: "contained" },
+      { label: "Text Me", href: "sms:+14359010628", variant: "outlined" },
       {
-        label: "Book a Date",
-        href: "https://calendly.com/your-dj/booking",
+        label: "Book Now",
+        href: "#contact",
         variant: "contained",
       },
     ] satisfies CTA[],

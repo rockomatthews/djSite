@@ -105,7 +105,7 @@ export default function Header() {
             sx={{ display: { xs: "none", lg: "flex" } }}
           >
             <Button
-              href={siteContent.brand.bookingUrl}
+              href="#contact"
               variant="contained"
               color="primary"
             >
@@ -123,7 +123,7 @@ export default function Header() {
           }}
         >
           <Button
-            href={siteContent.brand.bookingUrl}
+            href="#contact"
             variant="contained"
             color="primary"
           >

@@ -7,12 +7,12 @@ import {
   Container,
   Grid,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Hero from "@/components/Hero";
 import GallerySection from "@/components/GallerySection";
+import ContactForm from "@/components/ContactForm";
 import { siteContent } from "@/lib/content";
 
 export default function Home() {
@@ -140,24 +140,13 @@ export default function Home() {
           <Button variant="outlined" href={siteContent.brand.smsLink} size="large">
             Text Me
           </Button>
-          <Button variant="contained" href={siteContent.brand.bookingUrl} size="large">
-            Book a Date
-          </Button>
         </Stack>
-        <Stack spacing={2} component="form" sx={{ mt: 6 }}>
+        <Stack spacing={2} sx={{ mt: 6 }}>
           <Typography variant="h5">Quick inquiry</Typography>
           <Typography variant="body2" color="text.secondary">
             {siteContent.contact.formHint}
           </Typography>
-          <Stack spacing={2}>
-            <TextField label="Name" fullWidth />
-            <TextField label="Email" type="email" fullWidth />
-            <TextField label="Event Date" type="date" fullWidth InputLabelProps={{ shrink: true }} />
-            <TextField label="Event Details" multiline rows={4} fullWidth />
-            <Button variant="contained" size="large">
-              Send Inquiry
-            </Button>
-          </Stack>
+          <ContactForm />
         </Stack>
       </Container>
     </Box>
