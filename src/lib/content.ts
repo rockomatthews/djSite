@@ -28,19 +28,21 @@ export const siteContent = {
     slides: [
       {
         image: "/gallery/hero1.png",
-        headline: "Turn your night into a headline.",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
         subheadline:
-          "Modern mixes, seamless transitions, and a vibe tailored to your crowd.",
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
       },
       {
         image: "/gallery/hero2.png",
-        headline: "Set the tone from the first track.",
-        subheadline: "Curated energy for weddings, private events, and nightlife.",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
       },
       {
         image: "/gallery/hero3.png",
-        headline: "Every moment, every beat, dialed in.",
-        subheadline: "Professional sound, seamless flow, unforgettable nights.",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
       },
     ],
   },

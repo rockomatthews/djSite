@@ -61,9 +61,13 @@ export default function Hero() {
             <Typography variant="h1" sx={{ fontSize: { xs: "2.5rem", md: "3.75rem" } }}>
               {hero.slides[activeSlide].headline}
             </Typography>
-            <Typography variant="h6" color="text.secondary">
-              {hero.slides[activeSlide].subheadline}
-            </Typography>
+            {hero.slides[activeSlide].subheadline
+              .split("\n\n")
+              .map((paragraph, index) => (
+                <Typography key={index} variant="h6" color="text.secondary">
+                  {paragraph}
+                </Typography>
+              ))}
           </Stack>
 
           <CTAButtons ctas={hero.ctas} />
