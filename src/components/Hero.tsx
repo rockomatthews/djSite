@@ -1,18 +1,21 @@
 "use client";
 
-import { Box, Card, CardContent, Container, IconButton, Stack, Typography } from "@mui/material";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { useRef, useState } from "react";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import CTAButtons from "@/components/CTAButtons";
 import SoundCloudPlayer from "@/components/SoundCloudPlayer";
-import VideoBackground, { type VideoBackgroundHandle } from "@/components/VideoBackground";
 import { siteContent } from "@/lib/content";
 
 export default function Hero() {
-  const { hero, mediaPreview } = siteContent;
-  const videoRef = useRef<VideoBackgroundHandle>(null);
-  const [muted, setMuted] = useState(true);
+  const { hero } = siteContent;
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % hero.slides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [hero.slides.length]);
 
   return (
     <Box
@@ -25,13 +28,21 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      <VideoBackground
-        ref={videoRef}
-        youtubeId={hero.video.youtubeId}
-        posterUrl={hero.video.posterUrl}
-        is360={hero.video.is360}
-        onMuteChange={setMuted}
-      />
+      {hero.slides.map((slide, index) => (
+        <Box
+          key={slide.image}
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${slide.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: index === activeSlide ? 1 : 0,
+            transition: "opacity 800ms ease",
+            zIndex: 0,
+          }}
+        />
+      ))}
       <Box
         sx={{
           position: "absolute",
@@ -42,80 +53,20 @@ export default function Hero() {
         }}
       />
       <Container sx={{ position: "relative", zIndex: 2, py: { xs: 10, md: 14 } }}>
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 4,
-            pointerEvents: "none",
-          }}
-        >
-          <IconButton
-            onClick={() => videoRef.current?.toggleMute()}
-            aria-label={`${muted ? "Enable" : "Disable"} ${hero.musicToggleLabel}`}
-            sx={{
-              pointerEvents: "auto",
-              position: "absolute",
-              top: { xs: 12, md: "50%" },
-              left: { xs: "50%", md: "50%" },
-              transform: {
-                xs: "translateX(-50%)",
-                md: "translate(-50%, -50%)",
-              },
-              width: { xs: 84, md: 96 },
-              height: { xs: 84, md: 96 },
-              bgcolor: "rgba(0,0,0,0.65)",
-              border: "2px solid rgba(255,255,255,0.6)",
-              color: "common.white",
-              boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
-              "&:hover": {
-                bgcolor: "rgba(0,0,0,0.8)",
-              },
-            }}
-          >
-            {muted ? (
-              <VolumeOffIcon sx={{ fontSize: 44 }} />
-            ) : (
-              <VolumeUpIcon sx={{ fontSize: 44 }} />
-            )}
-          </IconButton>
-        </Box>
         <Stack spacing={4} maxWidth={680}>
           <Stack spacing={2}>
             <Typography variant="overline" sx={{ color: "secondary.main" }}>
               {siteContent.brand.location}
             </Typography>
             <Typography variant="h1" sx={{ fontSize: { xs: "2.5rem", md: "3.75rem" } }}>
-              {hero.headline}
+              {hero.slides[activeSlide].headline}
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              {hero.subheadline}
+              {hero.slides[activeSlide].subheadline}
             </Typography>
           </Stack>
 
           <CTAButtons ctas={hero.ctas} />
-
-          <Card
-            sx={{
-              width: "100%",
-              maxWidth: 420,
-              bgcolor: "rgba(18,18,25,0.85)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              backdropFilter: "blur(12px)",
-            }}
-          >
-            <CardContent>
-              <Typography variant="subtitle2" sx={{ color: "secondary.main" }}>
-                {mediaPreview.title}
-              </Typography>
-              <Typography variant="body1" sx={{ mt: 1 }}>
-                {mediaPreview.description}
-              </Typography>
-              <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: "block" }}>
-                {mediaPreview.tracklist.join(" • ")}
-              </Typography>
-            </CardContent>
-          </Card>
         </Stack>
         <Box
           sx={{

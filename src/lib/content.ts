@@ -16,9 +16,6 @@ export const siteContent = {
     email: "bookings@djnova.com",
   },
   hero: {
-    headline: "Turn your night into a headline.",
-    subheadline:
-      "Modern mixes, seamless transitions, and a vibe tailored to your crowd.",
     ctas: [
       { label: "Call Now", href: "tel:+14359010628", variant: "contained" },
       { label: "Text Me", href: "sms:+14359010628", variant: "outlined" },
@@ -28,18 +25,24 @@ export const siteContent = {
         variant: "contained",
       },
     ] satisfies CTA[],
-    video: {
-      youtubeId: "temQ82314DM",
-      posterUrl: "/globe.svg",
-      is360: true,
-    },
-    musicToggleLabel: "Music",
-  },
-  mediaPreview: {
-    title: "Featured Mix",
-    description:
-      "A 90-second preview of signature transitions and crowd-building energy.",
-    tracklist: ["Deep house opener", "Afro tech build", "Classic sing-along"],
+    slides: [
+      {
+        image: "/gallery/hero1.png",
+        headline: "Turn your night into a headline.",
+        subheadline:
+          "Modern mixes, seamless transitions, and a vibe tailored to your crowd.",
+      },
+      {
+        image: "/gallery/hero2.png",
+        headline: "Set the tone from the first track.",
+        subheadline: "Curated energy for weddings, private events, and nightlife.",
+      },
+      {
+        image: "/gallery/hero3.png",
+        headline: "Every moment, every beat, dialed in.",
+        subheadline: "Professional sound, seamless flow, unforgettable nights.",
+      },
+    ],
   },
   services: [
     {
