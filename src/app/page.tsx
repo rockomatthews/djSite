@@ -43,28 +43,48 @@ export default function Home() {
         </Grid>
       </Container>
 
-      <Container id="services" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
-        <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
-          <Typography variant="h2">Services built for every crowd</Typography>
-          <Typography variant="body1" color="text.secondary">
-            Custom setlists, clean transitions, and a polished presence.
-          </Typography>
-        </Stack>
-        <Grid container spacing={3} sx={{ mt: 4 }}>
-          {siteContent.services.map((service) => (
-            <Grid size={{ xs: 12, md: 4 }} key={service.title}>
-              <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
-                <CardContent>
-                  <Typography variant="h6">{service.title}</Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                    {service.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      <Box
+        id="services"
+        sx={{
+          position: "relative",
+          py: { xs: 8, md: 12 },
+          scrollMarginTop: 96,
+          backgroundImage: "url(/gallery/parallax.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: { xs: "scroll", md: "fixed" },
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            bgcolor: "rgba(8,8,12,0.7)",
+          }}
+        />
+        <Container sx={{ position: "relative", zIndex: 1 }}>
+          <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
+            <Typography variant="h2">Services built for every crowd</Typography>
+            <Typography variant="body1" color="text.secondary">
+              Custom setlists, clean transitions, and a polished presence.
+            </Typography>
+          </Stack>
+          <Grid container spacing={3} sx={{ mt: 4 }}>
+            {siteContent.services.map((service) => (
+              <Grid size={{ xs: 12, md: 4 }} key={service.title}>
+                <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
+                  <CardContent>
+                    <Typography variant="h6">{service.title}</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                      {service.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
 
       <GallerySection />
 

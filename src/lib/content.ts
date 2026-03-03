@@ -59,7 +59,8 @@ export const siteContent = {
     },
     {
       title: "Nightlife & Private Parties",
-      description: "High-impact club sets, birthdays, and VIP celebrations.",
+      description:
+        "I was a nightclub resident at multiple clubs in my career, now focusing on private events.",
     },
   ],
   testimonials: [
