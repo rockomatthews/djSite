@@ -1,12 +1,13 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
-const SMS_GATEWAY_EMAIL = "4359010628@tmomail.net";
+const FORM_DESTINATIONS =
+  "greg@djparkcity.com,4359010628@tmomail.net";
 
 export default function ContactForm() {
   return (
     <Box
       component="form"
-      action={`https://formsubmit.co/${SMS_GATEWAY_EMAIL}`}
+      action={`https://formsubmit.co/${FORM_DESTINATIONS}`}
       method="POST"
     >
       <input type="hidden" name="_subject" value="New DJ Inquiry" />

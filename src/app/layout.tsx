@@ -6,7 +6,7 @@ import { montserrat } from "@/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dj-site-phi.vercel.app"),
+  metadataBase: new URL("https://djparkcity.com"),
   title: "DJ Park City",
   description: "Turn your night into a headline. Book Now",
   openGraph: {

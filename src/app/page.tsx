@@ -18,6 +18,22 @@ import { siteContent } from "@/lib/content";
 export default function Home() {
   return (
     <Box id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "DJ Park City",
+            url: "https://djparkcity.com",
+            telephone: "+1-435-901-0628",
+            areaServed: "Park City, Utah",
+            description:
+              "Park City's Premier Mobile DJ Service Since 1997. Modern and traditional music with full sound and lighting.",
+            sameAs: [],
+          }),
+        }}
+      />
       <Hero />
 
       <Container id="about" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
