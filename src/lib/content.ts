@@ -93,13 +93,13 @@ export const siteContent = {
     "/gallery/8.JPG",
   ],
   about: {
-    headline: "Your soundtrack, crafted live.",
+    headline: "DJ Greg Sauer",
     bio:
-      "DJ Nova blends house, open-format, and throwbacks with a focus on flow. From intimate gatherings to packed dance floors, every set is tailored.",
+      "“Every set is tailored to you and your guests’ tastes.”",
     stats: [
-      { label: "Events Played", value: "250+" },
-      { label: "Cities", value: "18" },
-      { label: "Years Experience", value: "10" },
+      { label: "Events Played", value: "1000+" },
+      { label: "Cities", value: "Montreal-Honolulu" },
+      { label: "Years Experience", value: "30+" },
     ],
   },
   contact: {
