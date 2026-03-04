@@ -13,7 +13,7 @@ export const siteContent = {
     phoneLink: "tel:+14359010628",
     smsLink: "sms:+14359010628",
     bookingUrl: "#contact",
-    email: "bookings@djnova.com",
+    email: "djsour@gmail.com",
   },
   hero: {
     ctas: [

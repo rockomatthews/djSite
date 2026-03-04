@@ -1,7 +1,7 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 const FORM_DESTINATIONS =
-  "greg@djparkcity.com,4359010628@tmomail.net";
+  "djsour@gmail.com,4359010628@tmomail.net";
 
 export default function ContactForm() {
   return (
