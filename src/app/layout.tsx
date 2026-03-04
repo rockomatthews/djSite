@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://djparkcity.com"),
   title: "DJ Park City",
   description: "Turn your night into a headline. Book Now",
+  icons: {
+    icon: "/djParkCityLogo.png",
+  },
   openGraph: {
     title: "DJ Park City",
     description: "Turn your night into a headline. Book Now",
