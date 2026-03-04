@@ -125,6 +125,24 @@ export const siteContent = {
     placeId: "YOUR_GOOGLE_PLACE_ID",
     reviews: [
       {
+        author: "Chelsea M.",
+        rating: 5,
+        time: "3 weeks ago",
+        text: "Perfect pacing and flawless transitions. Everyone stayed on the floor.",
+      },
+      {
+        author: "Ryan P.",
+        rating: 5,
+        time: "5 weeks ago",
+        text: "Super professional and the sound setup was clean and powerful.",
+      },
+      {
+        author: "Lena T.",
+        rating: 5,
+        time: "7 weeks ago",
+        text: "Great mix of classics and modern tracks. The lighting looked amazing.",
+      },
+      {
         author: "Amelia R.",
         rating: 5,
         time: "2 months ago",

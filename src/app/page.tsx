@@ -119,41 +119,63 @@ export default function Home() {
               Live Reviews from Google
             </Typography>
           </Stack>
-          <Grid container spacing={3} sx={{ mt: 4 }}>
-            {siteContent.googleReviews.reviews.map((review) => (
-              <Grid size={{ xs: 12, md: 4 }} key={`${review.author}-${review.time}`}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    bgcolor: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                >
-                  <CardContent>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Avatar sx={{ bgcolor: "primary.main" }}>
-                        {review.author[0]}
-                      </Avatar>
-                      <Box>
-                        <Typography variant="subtitle2">{review.author}</Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {review.time}
-                        </Typography>
-                      </Box>
-                    </Stack>
-                    <Stack direction="row" spacing={0.5} sx={{ mt: 2 }}>
-                      {Array.from({ length: review.rating }).map((_, index) => (
-                        <StarIcon key={index} sx={{ color: "#fbbc04" }} />
-                      ))}
-                    </Stack>
-                    <Typography variant="body2" sx={{ mt: 2 }}>
-                      {review.text}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+          <Box
+            sx={{
+              mt: 4,
+              overflow: "hidden",
+              position: "relative",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                gap: 3,
+                width: "max-content",
+                animation: "reviewsScroll 40s linear infinite",
+                "@keyframes reviewsScroll": {
+                  from: { transform: "translateX(0)" },
+                  to: { transform: "translateX(-50%)" },
+                },
+              }}
+            >
+              {[...siteContent.googleReviews.reviews, ...siteContent.googleReviews.reviews].map(
+                (review, index) => (
+                  <Card
+                    key={`${review.author}-${review.time}-${index}`}
+                    sx={{
+                      minWidth: { xs: 260, md: 320 },
+                      maxWidth: 360,
+                      flex: "0 0 auto",
+                      bgcolor: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <CardContent>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar sx={{ bgcolor: "primary.main" }}>
+                          {review.author[0]}
+                        </Avatar>
+                        <Box>
+                          <Typography variant="subtitle2">{review.author}</Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            {review.time}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                      <Stack direction="row" spacing={0.5} sx={{ mt: 2 }}>
+                        {Array.from({ length: review.rating }).map((_, starIndex) => (
+                          <StarIcon key={starIndex} sx={{ color: "#fbbc04" }} />
+                        ))}
+                      </Stack>
+                      <Typography variant="body2" sx={{ mt: 2 }}>
+                        {review.text}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                )
+              )}
+            </Box>
+          </Box>
         </Container>
       </Box>
 
