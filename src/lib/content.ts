@@ -112,8 +112,12 @@ export const siteContent = {
   soundcloud: {
     tracks: [
       {
-        title: "Soul Makossa (Money) [UK Radio Edit]",
-        url: "https://soundcloud.com/yolandabecool/soul-makossa-money-yolanda-be-cool-dcup",
+        title: "Soul Makossa (Money) (Radio Edit)",
+        url: "https://soundcloud.com/yolandabecool/soul-makossa-money-radio",
+      },
+      {
+        title: "Rescue Me (feat. Alex Newell)",
+        url: "https://soundcloud.com/dsolomonmusic/rescue-me-feat-alex-newell-2",
       },
     ],
   },

@@ -31,7 +31,7 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
     if (!trackUrl) return "";
     const params = new URLSearchParams({
       url: trackUrl,
-      auto_play: "false",
+      auto_play: "true",
       hide_related: "true",
       show_comments: "false",
       show_user: "false",
@@ -41,6 +41,8 @@ export default function SoundCloudPlayer({ tracks }: SoundCloudPlayerProps) {
       buying: "false",
       sharing: "false",
       download: "false",
+      single_active: "true",
+      start_track: "0",
       color: "ff5500",
       visual: "true",
     });
