@@ -48,7 +48,15 @@ export default function Home() {
             <Grid size={{ xs: 12, sm: 4 }} key={stat.label}>
               <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
                 <CardContent>
-                  <Typography variant="h4">{stat.value}</Typography>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontSize: stat.label === "Service Area" ? "1.1rem" : undefined,
+                      lineHeight: stat.label === "Service Area" ? 1.4 : undefined,
+                    }}
+                  >
+                    {stat.value}
+                  </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {stat.label}
                   </Typography>
