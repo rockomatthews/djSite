@@ -50,42 +50,6 @@ async function sendEmail(payload: ContactPayload) {
   }
 }
 
-async function sendPushover(payload: ContactPayload) {
-  const token = process.env.PUSHOVER_APP_TOKEN;
-  const user = process.env.PUSHOVER_USER_KEY;
-
-  if (!token || !user) {
-    throw new Error("Missing Pushover environment variables.");
-  }
-
-  const message = [
-    "New DJ Inquiry",
-    `Name: ${payload.name}`,
-    `Email: ${payload.email}`,
-    `Phone: ${payload.phone || "Not provided"}`,
-    `Event Date: ${payload.eventDate}`,
-    `Details: ${payload.eventDetails}`,
-  ].join("\n");
-
-  const params = new URLSearchParams({
-    token,
-    user,
-    title: "DJ Park City Inquiry",
-    message,
-  });
-
-  const response = await fetch("https://api.pushover.net/1/messages.json", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: params.toString(),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Pushover error: ${errorText}`);
-  }
-}
-
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as ContactPayload;
@@ -99,7 +63,7 @@ export async function POST(request: Request) {
       }
     }
 
-    await Promise.all([sendEmail(payload), sendPushover(payload)]);
+    await sendEmail(payload);
     return NextResponse.json({ ok: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";

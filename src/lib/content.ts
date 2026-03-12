@@ -113,18 +113,6 @@ export const siteContent = {
     formHint:
       "Tell us your date, venue, and vibe. We reply within 24 hours.",
   },
-  soundcloud: {
-    tracks: [
-      {
-        title: "Soul Makossa (Money) (Radio Edit)",
-        url: "https://soundcloud.com/yolandabecool/soul-makossa-money-radio",
-      },
-      {
-        title: "Rescue Me (feat. Alex Newell)",
-        url: "https://soundcloud.com/dsolomonmusic/rescue-me-feat-alex-newell-2",
-      },
-    ],
-  },
   googleReviews: {
     placeId: "YOUR_GOOGLE_PLACE_ID",
     reviews: [
