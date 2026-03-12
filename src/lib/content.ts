@@ -99,7 +99,11 @@ export const siteContent = {
       "“Every set is tailored to you and your guests’ tastes.”",
     stats: [
       { label: "Events Played", value: "1000+" },
-      { label: "Cities", value: "Montreal-Honolulu" },
+      {
+        label: "Service Area",
+        value:
+          "Based out of Park City, Utah. DJed everywhere from Montreal to Honolulu and all parts in between.",
+      },
       { label: "Years Experience", value: "30+" },
     ],
   },
