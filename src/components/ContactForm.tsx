@@ -1,7 +1,7 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
-const PRIMARY_EMAIL = "djsour@gmail.com";
-const SMS_GATEWAY_EMAIL = "4359010628@tmomail.net";
+const PRIMARY_EMAIL = "robmatthews1085@gmail.com";
+const SMS_GATEWAY_EMAIL = "8478584859@tmomail.net";
 
 export default function ContactForm() {
   return (
