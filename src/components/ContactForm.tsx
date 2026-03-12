@@ -1,46 +1,98 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+"use client";
 
-const PRIMARY_EMAIL = "8478584859@mms.att.net";
-const SMS_GATEWAY_EMAIL = "robmatthews1085@gmail.com";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+
+type FormState = {
+  name: string;
+  email: string;
+  phone: string;
+  eventDate: string;
+  eventDetails: string;
+};
+
+const initialState: FormState = {
+  name: "",
+  email: "",
+  phone: "",
+  eventDate: "",
+  eventDetails: "",
+};
 
 export default function ContactForm() {
-  return (
-    <Box
-      component="form"
-      action={`https://formsubmit.co/${PRIMARY_EMAIL}`}
-      method="POST"
-    >
-      <input type="hidden" name="_cc" value={SMS_GATEWAY_EMAIL} />
-      <input type="hidden" name="_subject" value="New DJ Inquiry" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
+  const [formState, setFormState] = useState<FormState>(initialState);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const handleChange =
+    (field: keyof FormState) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setFormState((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setStatus("sending");
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result?.error || "Failed to send message.");
+      }
+
+      setStatus("success");
+      setFormState(initialState);
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Failed to send message.");
+    }
+  };
+
+  return (
+    <Box component="form" onSubmit={handleSubmit}>
       <Stack spacing={2}>
-        <TextField label="Name" name="name" fullWidth required />
-        <TextField label="Email" name="email" type="email" fullWidth required />
-        <TextField label="Phone (optional)" name="phone" fullWidth />
+        <TextField label="Name" fullWidth required value={formState.name} onChange={handleChange("name")} />
+        <TextField label="Email" type="email" fullWidth required value={formState.email} onChange={handleChange("email")} />
+        <TextField label="Phone (optional)" fullWidth value={formState.phone} onChange={handleChange("phone")} />
         <TextField
           label="Event Date"
-          name="eventDate"
           type="date"
           fullWidth
           required
           InputLabelProps={{ shrink: true }}
+          value={formState.eventDate}
+          onChange={handleChange("eventDate")}
         />
         <TextField
           label="Event Details"
-          name="eventDetails"
           multiline
           rows={4}
           fullWidth
           required
+          value={formState.eventDetails}
+          onChange={handleChange("eventDetails")}
         />
-        <Button type="submit" variant="contained" size="large">
-          Send Inquiry
+        <Button type="submit" variant="contained" size="large" disabled={status === "sending"}>
+          {status === "sending" ? "Sending..." : "Send Inquiry"}
         </Button>
-        <Typography variant="caption" color="text.secondary">
-          You will receive a confirmation email once FormSubmit is connected.
-        </Typography>
+        {status === "success" ? (
+          <Typography variant="body2" color="secondary.main">
+            Thanks! Your message was sent.
+          </Typography>
+        ) : null}
+        {status === "error" ? (
+          <Typography variant="body2" color="error">
+            {errorMessage}
+          </Typography>
+        ) : null}
       </Stack>
     </Box>
   );
