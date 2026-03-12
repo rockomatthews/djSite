@@ -107,6 +107,21 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
+          <Card
+            sx={{
+              mt: 3,
+              bgcolor: "rgba(18,18,25,0.85)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <CardContent>
+              <Typography variant="body1" color="text.secondary" textAlign="center">
+                Event prices are based on size, location, equipment, and lighting. Text for
+                availability and pricing.
+              </Typography>
+            </CardContent>
+          </Card>
         </Container>
       </Box>
 
