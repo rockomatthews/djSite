@@ -116,7 +116,11 @@ export default function Home() {
             }}
           >
             <CardContent>
-              <Typography variant="body1" color="text.secondary" textAlign="center">
+              <Typography
+                variant="body1"
+                textAlign="center"
+                sx={{ fontSize: "1.05rem", color: "#fbbc04" }}
+              >
                 Event prices are based on size, location, equipment, and lighting. Text for
                 availability and pricing.
               </Typography>
