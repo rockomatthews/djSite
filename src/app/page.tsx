@@ -206,7 +206,10 @@ export default function Home() {
         <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
           <Typography variant="h2">Booking & availability</Typography>
           <Typography variant="body1" color="text.secondary">
-            {siteContent.contact.availability}
+            {siteContent.contact.availability}{" "}
+            <Box component="span" sx={{ fontWeight: 700 }}>
+              Texting me is the quickest route to a response!
+            </Box>
           </Typography>
         </Stack>
         <Stack
@@ -215,10 +218,7 @@ export default function Home() {
           justifyContent="center"
           sx={{ mt: 4 }}
         >
-          <Button variant="contained" href={siteContent.brand.phoneLink} size="large">
-            Call {siteContent.brand.phone}
-          </Button>
-          <Button variant="outlined" href={siteContent.brand.smsLink} size="large">
+          <Button variant="contained" href={siteContent.brand.smsLink} size="large">
             Text Me
           </Button>
         </Stack>

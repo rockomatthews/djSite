@@ -17,12 +17,11 @@ export const siteContent = {
   },
   hero: {
     ctas: [
-      { label: "Call Now", href: "tel:+14359010628", variant: "contained" },
-      { label: "Text Me", href: "sms:+14359010628", variant: "outlined" },
+      { label: "Text Me", href: "sms:+14359010628", variant: "contained" },
       {
-        label: "Book Now",
-        href: "#contact",
-        variant: "contained",
+        label: "Email Me",
+        href: "mailto:djsour@gmail.com",
+        variant: "outlined",
       },
     ] satisfies CTA[],
     slides: [
