@@ -44,6 +44,36 @@ export const siteContent = {
         subheadline:
           "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
       },
+      {
+        image: "/gallery/hero4.png",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
+      },
+      {
+        image: "/gallery/hero5.png",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
+      },
+      {
+        image: "/gallery/hero6.png",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
+      },
+      {
+        image: "/gallery/hero7.png",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
+      },
+      {
+        image: "/gallery/hero8.png",
+        headline: "Park City's Premier Mobile DJ Service Since 1997!",
+        subheadline:
+          "Modern and traditional music catered to your event.\n\nAll of the sound + lighting equipment to fit your needs.",
+      },
     ],
   },
   services: [
@@ -92,6 +122,14 @@ export const siteContent = {
     "/gallery/6.JPG",
     "/gallery/7.jpeg",
     "/gallery/8.JPG",
+    "/gallery/10.png",
+    "/gallery/11.png",
+    "/gallery/12.png",
+    "/gallery/13.png",
+    "/gallery/14 .png",
+    "/gallery/15.png",
+    "/gallery/16.png",
+    "/gallery/17.png",
   ],
   about: {
     headline: "DJ Greg Sauer",

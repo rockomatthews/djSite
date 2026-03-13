@@ -1,35 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  Box,
-  Container,
-  Dialog,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { siteContent } from "@/lib/content";
 
 export default function GallerySection() {
   const { galleryImages } = siteContent;
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [index, setIndex] = useState(0);
 
-  const handleOpen = (index: number) => setOpenIndex(index);
-  const handleClose = () => setOpenIndex(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [galleryImages.length]);
 
   const handlePrev = () => {
-    if (openIndex === null) return;
-    setOpenIndex((openIndex - 1 + galleryImages.length) % galleryImages.length);
+    setIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
 
   const handleNext = () => {
-    if (openIndex === null) return;
-    setOpenIndex((openIndex + 1) % galleryImages.length);
+    setIndex((prev) => (prev + 1) % galleryImages.length);
   };
 
   return (
@@ -44,121 +38,91 @@ export default function GallerySection() {
       <Box
         sx={{
           mt: 4,
-          display: "grid",
-          gap: 2,
-          gridTemplateColumns: {
-            xs: "repeat(2, minmax(0, 1fr))",
-            md: "repeat(4, minmax(0, 1fr))",
-          },
+          position: "relative",
+          borderRadius: 3,
+          overflow: "hidden",
+          border: "1px solid rgba(255,255,255,0.08)",
+          boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
+          height: { xs: 320, md: 520 },
         }}
       >
-        {galleryImages.map((src, index) => (
+        <Image
+          src={galleryImages[index]}
+          alt="Gallery spotlight"
+          fill
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 900px) 100vw, 1200px"
+        />
+
+        <IconButton
+          onClick={handlePrev}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: 16,
+            transform: "translateY(-50%)",
+            bgcolor: "rgba(0,0,0,0.55)",
+            color: "common.white",
+            "&:hover": { bgcolor: "rgba(0,0,0,0.75)" },
+          }}
+          aria-label="Previous image"
+        >
+          <ArrowBackIcon />
+        </IconButton>
+
+        <IconButton
+          onClick={handleNext}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            right: 16,
+            transform: "translateY(-50%)",
+            bgcolor: "rgba(0,0,0,0.55)",
+            color: "common.white",
+            "&:hover": { bgcolor: "rgba(0,0,0,0.75)" },
+          }}
+          aria-label="Next image"
+        >
+          <ArrowForwardIcon />
+        </IconButton>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 2,
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(4, minmax(0, 1fr))",
+            md: "repeat(8, minmax(0, 1fr))",
+          },
+          gap: 1,
+        }}
+      >
+        {galleryImages.map((src, thumbIndex) => (
           <Box
             key={src}
-            onClick={() => handleOpen(index)}
+            onClick={() => setIndex(thumbIndex)}
             sx={{
               position: "relative",
               width: "100%",
               aspectRatio: "1 / 1",
-              borderRadius: 2,
+              borderRadius: 1,
               overflow: "hidden",
               cursor: "pointer",
-              border: "1px solid rgba(255,255,255,0.08)",
+              border:
+                thumbIndex === index
+                  ? "2px solid rgba(76,194,255,0.9)"
+                  : "1px solid rgba(255,255,255,0.1)",
+              opacity: thumbIndex === index ? 1 : 0.7,
               "&:hover": {
-                transform: "scale(1.01)",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+                opacity: 1,
               },
-              transition: "transform 150ms ease, box-shadow 150ms ease",
             }}
           >
-            <Image src={src} alt="Gallery image" fill style={{ objectFit: "cover" }} />
+            <Image src={src} alt="Gallery thumbnail" fill style={{ objectFit: "cover" }} />
           </Box>
         ))}
       </Box>
-
-      <Dialog
-        open={openIndex !== null}
-        onClose={handleClose}
-        maxWidth="lg"
-        fullWidth
-        sx={{
-          "& .MuiDialog-paper": {
-            background: "rgba(10,10,14,0.92)",
-            borderRadius: 3,
-            overflow: "hidden",
-          },
-        }}
-      >
-        <Box sx={{ position: "relative", p: { xs: 2, md: 3 } }}>
-          <IconButton
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              top: 16,
-              right: 16,
-              zIndex: 2,
-              bgcolor: "rgba(0,0,0,0.5)",
-              color: "common.white",
-              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
-            }}
-            aria-label="Close gallery"
-          >
-            <CloseIcon />
-          </IconButton>
-
-          <IconButton
-            onClick={handlePrev}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: 16,
-              transform: "translateY(-50%)",
-              zIndex: 2,
-              bgcolor: "rgba(0,0,0,0.5)",
-              color: "common.white",
-              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
-            }}
-            aria-label="Previous image"
-          >
-            <ArrowBackIcon />
-          </IconButton>
-
-          <IconButton
-            onClick={handleNext}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              right: 16,
-              transform: "translateY(-50%)",
-              zIndex: 2,
-              bgcolor: "rgba(0,0,0,0.5)",
-              color: "common.white",
-              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
-            }}
-            aria-label="Next image"
-          >
-            <ArrowForwardIcon />
-          </IconButton>
-
-          {openIndex !== null ? (
-            <Box
-              sx={{
-                position: "relative",
-                width: "100%",
-                height: { xs: 360, md: 560 },
-              }}
-            >
-              <Image
-                src={galleryImages[openIndex]}
-                alt="Gallery enlarged"
-                fill
-                style={{ objectFit: "contain" }}
-                sizes="(max-width: 900px) 100vw, 900px"
-              />
-            </Box>
-          ) : null}
-        </Box>
-      </Dialog>
     </Container>
   );
 }
