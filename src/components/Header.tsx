@@ -42,7 +42,15 @@ export default function Header() {
             py: 1,
           }}
         >
-          <Stack direction="row" spacing={2} alignItems="center">
+          <Stack
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            sx={{
+              justifyContent: { xs: "center", md: "flex-start" },
+              width: { xs: "100%", md: "auto" },
+            }}
+          >
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
