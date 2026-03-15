@@ -13,6 +13,7 @@ type ContactPayload = {
 async function sendEmail(payload: ContactPayload) {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL;
+  const ccEmail = process.env.CONTACT_CC_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !toEmail || !fromEmail) {
@@ -38,6 +39,7 @@ async function sendEmail(payload: ContactPayload) {
     body: JSON.stringify({
       from: fromEmail,
       to: [toEmail],
+      cc: ccEmail ? [ccEmail] : undefined,
       subject: `New DJ inquiry from ${payload.name}`,
       reply_to: payload.email,
       html,
