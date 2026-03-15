@@ -67,14 +67,7 @@ export default function Header() {
                 />
               </Box>
             </Link>
-            <Box>
-              <Typography variant="subtitle1">{siteContent.brand.name}</Typography>
-              {siteContent.brand.tagline ? (
-                <Typography variant="caption" color="text.secondary">
-                  {siteContent.brand.tagline}
-                </Typography>
-              ) : null}
-            </Box>
+            <Box />
           </Stack>
 
           <Stack
