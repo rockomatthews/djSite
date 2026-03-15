@@ -121,8 +121,8 @@ export default function Home() {
                 textAlign="center"
                 sx={{ fontSize: "1.05rem", color: "#fbbc04" }}
               >
-                Event prices are based on size, location, equipment, and lighting. Text for
-                availability and pricing.
+                Event prices are based on size, duration, location, equipment, and lighting. Text
+                for availability and pricing.
               </Typography>
             </CardContent>
           </Card>
