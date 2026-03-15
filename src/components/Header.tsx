@@ -46,8 +46,8 @@ export default function Header() {
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: 100,
-                  height: 100,
+                  width: 150,
+                  height: 150,
                   overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
@@ -61,8 +61,8 @@ export default function Header() {
                 <Image
                   src="/djParkCityLogo.png"
                   alt="DJ Park City logo"
-                  width={100}
-                  height={100}
+                  width={150}
+                  height={150}
                   priority
                 />
               </Box>
