@@ -49,7 +49,8 @@ export default function Header() {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 3,
-            py: 1,
+            py: { xs: isScrolled ? 0.5 : 1, md: 1 },
+            flexDirection: { xs: isScrolled ? "row" : "column", md: "row" },
           }}
         >
           <Stack
@@ -57,15 +58,15 @@ export default function Header() {
             spacing={2}
             alignItems="center"
             sx={{
-              justifyContent: { xs: "center", md: "flex-start" },
+              justifyContent: { xs: isScrolled ? "flex-start" : "center", md: "flex-start" },
               width: { xs: "100%", md: "auto" },
             }}
           >
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: 150,
-                  height: 150,
+                  width: { xs: isScrolled ? 56 : 150, md: 150 },
+                  height: { xs: isScrolled ? 56 : 150, md: 150 },
                   overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
@@ -74,11 +75,6 @@ export default function Header() {
                   "&:hover": {
                     transform: "scale(1.08)",
                   },
-                  ...(isScrolled && {
-                    transform: { xs: "translateY(-40px)", md: "none" },
-                    opacity: { xs: 0, md: 1 },
-                    pointerEvents: { xs: "none", md: "auto" },
-                  }),
                 }}
               >
                 <Image
@@ -118,28 +114,43 @@ export default function Header() {
             alignItems="center"
             sx={{ display: { xs: "none", lg: "flex" } }}
           >
-            <Button
-              href="#contact"
-              variant="contained"
-              color="primary"
-            >
+            <Button href="#contact" variant="contained" color="primary">
+              Book Now
+            </Button>
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            sx={{ display: { xs: isScrolled ? "flex" : "none", md: "none" } }}
+          >
+            <Button href="#contact" variant="contained" color="primary">
               Book Now
             </Button>
           </Stack>
         </Container>
       </Toolbar>
-      <Box sx={{ display: { xs: "block", lg: "none" }, pb: 2 }}>
+      <Box
+        sx={{
+          display: { xs: isScrolled ? "none" : "block", lg: "none" },
+          pb: 2,
+        }}
+      >
         <Container
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: 2,
+            ...(isScrolled && {
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }),
           }}
         >
           <Button
             href="#contact"
             variant="contained"
             color="primary"
+            fullWidth={!isScrolled}
           >
             Book Now
           </Button>
