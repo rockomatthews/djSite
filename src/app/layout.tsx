@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeRegistry from "@/components/ThemeRegistry";
+import ScrollToTopFab from "@/components/ScrollToTopFab";
 import { montserrat } from "@/theme";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         <ThemeRegistry>
           <Header />
           {children}
+          <ScrollToTopFab />
           <Footer />
         </ThemeRegistry>
       </body>

@@ -60,6 +60,7 @@ export default function Header() {
             sx={{
               justifyContent: { xs: "center", md: "flex-start" },
               width: { xs: "100%", md: "auto" },
+              display: { xs: isScrolled ? "none" : "flex", md: "flex" },
             }}
           >
             <Link href="#top" aria-label="Back to top">
@@ -124,6 +125,7 @@ export default function Header() {
         sx={{
           display: { xs: "block", lg: "none" },
           pb: isScrolled ? 1 : 2,
+          mt: { xs: isScrolled ? 0 : 1 },
         }}
       >
         <Container
