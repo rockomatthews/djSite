@@ -65,13 +65,13 @@ export default function Header() {
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: { xs: isScrolled ? 28 : 150, md: 150 },
-                  height: { xs: isScrolled ? 28 : 150, md: 150 },
+                  width: { xs: isScrolled ? 75 : 150, md: 150 },
+                  height: { xs: isScrolled ? 75 : 150, md: 150 },
                   overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  transition: "transform 180ms ease",
+                  transition: "width 180ms ease, height 180ms ease, transform 180ms ease",
                   "&:hover": {
                     transform: "scale(1.08)",
                   },
