@@ -65,8 +65,8 @@ export default function Header() {
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: { xs: isScrolled ? 48 : 150, md: 150 },
-                  height: { xs: isScrolled ? 48 : 150, md: 150 },
+                  width: { xs: isScrolled ? 28 : 150, md: 150 },
+                  height: { xs: isScrolled ? 28 : 150, md: 150 },
                   overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
