@@ -59,14 +59,14 @@ export default function Header() {
             alignItems="center"
             sx={{
               justifyContent: { xs: isScrolled ? "flex-start" : "center", md: "flex-start" },
-              width: { xs: isScrolled ? 56 : "100%", md: "auto" },
+              width: { xs: isScrolled ? 48 : "100%", md: "auto" },
             }}
           >
             <Link href="#top" aria-label="Back to top">
               <Box
                 sx={{
-                  width: { xs: isScrolled ? 56 : 150, md: 150 },
-                  height: { xs: isScrolled ? 56 : 150, md: 150 },
+                  width: { xs: isScrolled ? 48 : 150, md: 150 },
+                  height: { xs: isScrolled ? 48 : 150, md: 150 },
                   overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
