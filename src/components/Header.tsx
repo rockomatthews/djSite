@@ -42,14 +42,17 @@ export default function Header() {
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      <Toolbar disableGutters>
+      <Toolbar
+        disableGutters
+        sx={{ minHeight: { xs: isScrolled ? 0 : 48, md: 64 } }}
+      >
         <Container
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             gap: 3,
-            py: { xs: isScrolled ? 0.5 : 1, md: 1 },
+            py: { xs: isScrolled ? 0.25 : 0.5, md: 1 },
             flexDirection: { xs: "column", md: "row" },
           }}
         >
@@ -124,8 +127,8 @@ export default function Header() {
       <Box
         sx={{
           display: { xs: "block", lg: "none" },
-          pb: isScrolled ? 1 : 2,
-          mt: { xs: isScrolled ? 0 : 1 },
+          pb: isScrolled ? 0.5 : 1,
+          mt: { xs: isScrolled ? 0 : 0.5 },
         }}
       >
         <Container
