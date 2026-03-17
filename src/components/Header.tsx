@@ -59,7 +59,7 @@ export default function Header() {
             alignItems="center"
             sx={{
               justifyContent: { xs: isScrolled ? "flex-start" : "center", md: "flex-start" },
-              width: { xs: "100%", md: "auto" },
+              width: { xs: isScrolled ? 56 : "100%", md: "auto" },
             }}
           >
             <Link href="#top" aria-label="Back to top">
@@ -121,9 +121,18 @@ export default function Header() {
           <Stack
             direction="row"
             alignItems="center"
-            sx={{ display: { xs: isScrolled ? "flex" : "none", md: "none" } }}
+            sx={{
+              display: { xs: isScrolled ? "flex" : "none", md: "none" },
+              flex: 1,
+              justifyContent: "flex-end",
+            }}
           >
-            <Button href="#contact" variant="contained" color="primary">
+            <Button
+              href="#contact"
+              variant="contained"
+              color="primary"
+              sx={{ width: "100%" }}
+            >
               Book Now
             </Button>
           </Stack>
