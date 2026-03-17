@@ -7,7 +7,8 @@ import { siteContent } from "@/lib/content";
 
 export default function Hero() {
   const { hero } = siteContent;
-  const [activeSlide, setActiveSlide] = useState(0);
+  const initialIndex = hero.slides.findIndex((slide) => slide.image === "/gallery/hero3.png");
+  const [activeSlide, setActiveSlide] = useState(initialIndex >= 0 ? initialIndex : 0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,6 +37,7 @@ export default function Hero() {
             backgroundImage: `url(${slide.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            filter: { xs: "brightness(1.2)", md: "none" },
             opacity: index === activeSlide ? 1 : 0,
             transition: "opacity 800ms ease",
             zIndex: 0,
@@ -47,17 +49,14 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(120deg, rgba(8,8,12,0.92) 10%, rgba(8,8,12,0.65) 55%, rgba(8,8,12,0.3) 100%)",
+            "linear-gradient(120deg, rgba(8,8,12,0.85) 10%, rgba(8,8,12,0.55) 55%, rgba(8,8,12,0.2) 100%)",
           zIndex: 1,
         }}
       />
-      <Container sx={{ position: "relative", zIndex: 2, py: { xs: 10, md: 14 } }}>
+      <Container sx={{ position: "relative", zIndex: 2, py: { xs: 6, md: 14 } }}>
         <Stack spacing={4} maxWidth={680}>
           <Stack spacing={2}>
-            <Typography variant="overline" sx={{ color: "secondary.main" }}>
-              {siteContent.brand.location}
-            </Typography>
-            <Typography variant="h1" sx={{ fontSize: { xs: "2.5rem", md: "3.75rem" } }}>
+            <Typography variant="h1" sx={{ fontSize: { xs: "2.2rem", md: "3.75rem" } }}>
               {hero.slides[activeSlide].headline}
             </Typography>
             {hero.slides[activeSlide].subheadline

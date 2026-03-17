@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -22,12 +23,21 @@ const navItems = [
 ];
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <AppBar
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "rgba(10,10,14,0.85)",
+        bgcolor: "rgba(10,10,14,0.6)",
         backdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
@@ -64,6 +74,11 @@ export default function Header() {
                   "&:hover": {
                     transform: "scale(1.08)",
                   },
+                  ...(isScrolled && {
+                    transform: { xs: "translateY(-40px)", md: "none" },
+                    opacity: { xs: 0, md: 1 },
+                    pointerEvents: { xs: "none", md: "auto" },
+                  }),
                 }}
               >
                 <Image
