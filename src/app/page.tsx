@@ -36,6 +36,24 @@ export default function Home() {
       />
       <Hero />
 
+      <Container sx={{ pb: { xs: 6, md: 8 } }}>
+        <Box
+          component="video"
+          src="/gregMovie.mov"
+          autoPlay
+          muted
+          loop
+          playsInline
+          sx={{
+            width: "100%",
+            borderRadius: 3,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
+          }}
+        />
+      </Container>
+
       <Container id="about" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
         <Stack spacing={2} maxWidth={720} sx={{ mb: 4 }}>
           <Typography variant="h2">{siteContent.about.headline}</Typography>
@@ -205,24 +223,6 @@ export default function Home() {
           </Box>
         </Container>
       </Box>
-
-      <Container sx={{ pb: { xs: 6, md: 8 } }}>
-        <Box
-          component="video"
-          src="/gregMovie.mov"
-          autoPlay
-          muted
-          loop
-          playsInline
-          sx={{
-            width: "100%",
-            borderRadius: 3,
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
-          }}
-        />
-      </Container>
 
       <Container id="contact" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 96 }}>
         <Stack spacing={2} textAlign={{ xs: "left", md: "center" }}>
