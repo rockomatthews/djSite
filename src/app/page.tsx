@@ -36,7 +36,7 @@ export default function Home() {
       />
       <Hero />
 
-      <Container sx={{ pb: { xs: 6, md: 8 } }}>
+      <Container sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 2, md: 3 } }}>
         <Box
           component="video"
           src="/gregMovie.mov"
